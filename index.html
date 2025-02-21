@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Jeux de Soirée</title>
+    <title>Jeux de Soirée</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +17,31 @@
     
     <button class="mode-toggle" onclick="toggleMode()">Mode Sombre</button>
     
-    <div class="menu-container">
-        <h2 class="slide-in">Choisissez un jeu</h2>
-        <ul class="menu">
-            <li><a href="multijoueur.html" class="hover-effect">Mode Multijoueur</a></li>
-            <li><a href="action-verite.html" class="hover-effect">Action ou Vérité</a></li>
-            <li><a href="je-never.html" class="hover-effect">Je n’ai jamais</a></li>
-            <li><a href="lyrics.html" class="hover-effect">N'oubliez pas les paroles</a></li>
-        </ul>
+    <audio id="challengeSound" src="challenge-sound.mp3"></audio>
+    
+    <div class="game-container slide-in">
+        <h2>Action ou Vérité</h2>
+        <p id="truthOrDare">Cliquez sur le bouton pour jouer.</p>
+        <button class="pulse" onclick="startChallenge('truthOrDare')">Jouer</button>
+        <button class="pulse" onclick="addPoint()">+1 Point</button>
+        <p id="countdownTruth"></p>
+        <div class="progress-container"><div class="progress-bar" id="progressTruth"></div></div>
+    </div>
+
+    <div class="game-container slide-in">
+        <h2>Je n’ai jamais</h2>
+        <p id="neverHaveIEver">Cliquez sur le bouton pour jouer.</p>
+        <button class="pulse" onclick="startChallenge('neverHaveIEver')">Jouer</button>
+        <p id="countdownNever"></p>
+        <div class="progress-container"><div class="progress-bar" id="progressNever"></div></div>
+    </div>
+
+    <div class="game-container slide-in">
+        <h2>N'oubliez pas les paroles</h2>
+        <p id="lyricsGame">Cliquez sur le bouton pour jouer.</p>
+        <button class="pulse" onclick="startChallenge('lyricsGame')">Jouer</button>
+        <p id="countdownLyrics"></p>
+        <div class="progress-container"><div class="progress-bar" id="progressLyrics"></div></div>
     </div>
 
     <script>
@@ -33,6 +50,27 @@
             document.body.classList.toggle("light-mode");
             let modeButton = document.querySelector(".mode-toggle");
             modeButton.innerText = document.body.classList.contains("dark-mode") ? "Mode Clair" : "Mode Sombre";
+        }
+
+        function startChallenge(gameId) {
+            let countdownElement = document.getElementById("countdown" + gameId.charAt(0).toUpperCase() + gameId.slice(1));
+            let progressBar = document.getElementById("progress" + gameId.charAt(0).toUpperCase() + gameId.slice(1));
+            let timeLeft = 10;
+            countdownElement.innerText = `Temps restant : ${timeLeft}s`;
+            progressBar.style.width = "100%";
+            
+            let countdown = setInterval(() => {
+                timeLeft--;
+                countdownElement.innerText = `Temps restant : ${timeLeft}s`;
+                progressBar.style.width = (timeLeft * 10) + "%";
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    countdownElement.innerText = "Temps écoulé !";
+                    progressBar.style.width = "0%";
+                }
+            }, 1000);
+            
+            playChallenge(gameId);
         }
     </script>
 </body>
