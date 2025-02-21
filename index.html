@@ -1,3 +1,5 @@
+<!-- Mise à jour forcée -->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,26 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeux de Soirée</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Bienvenue aux Jeux de Soirée !</h1>
+    <h1 class="fade-in">Bienvenue aux Jeux de Soirée !</h1>
     
-    <div class="game-container">
+    <div class="game-container slide-in">
         <h2>Action ou Vérité</h2>
         <p id="truthOrDare">Cliquez sur le bouton pour jouer.</p>
-        <button onclick="playTruthOrDare()">Jouer</button>
+        <button class="pulse" onclick="playTruthOrDare()">Jouer</button>
     </div>
     
-    <div class="game-container">
+    <div class="game-container slide-in">
         <h2>Je n’ai jamais</h2>
         <p id="neverHaveIEver">Cliquez sur le bouton pour jouer.</p>
-        <button onclick="playNeverHaveIEver()">Jouer</button>
+        <button class="pulse" onclick="playNeverHaveIEver()">Jouer</button>
     </div>
     
-    <div class="game-container">
+    <div class="game-container slide-in">
         <h2>N'oubliez pas les paroles</h2>
         <p id="lyricsGame">Cliquez sur le bouton pour jouer.</p>
-        <button onclick="playLyricsGame()">Jouer</button>
+        <button class="pulse" onclick="playLyricsGame()">Jouer</button>
     </div>
     
     <script>
