@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeux de Soirée</title>
+    <title>Accueil - Jeux de Soirée</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,103 +17,22 @@
     
     <button class="mode-toggle" onclick="toggleMode()">Mode Sombre</button>
     
-    <audio id="challengeSound" src="challenge-sound.mp3"></audio>
-    
-    <div class="game-container slide-in">
-        <h2>Action ou Vérité</h2>
-        <p id="truthOrDare">Cliquez sur le bouton pour jouer.</p>
-        <button class="pulse" onclick="startChallenge('truthOrDare')">Jouer</button>
-        <button class="pulse" onclick="addPoint()">+1 Point</button>
-        <p id="countdownTruth"></p>
-        <h3>Ajoutez votre propre défi</h3>
-        <input type="text" id="customChallenge" placeholder="Écrivez votre défi ici...">
-        <button class="pulse" onclick="addCustomChallenge()">Ajouter</button>
-        <ul id="customChallengesList"></ul>
-    </div>
-
-    <div class="game-container slide-in">
-        <h2>Je n’ai jamais</h2>
-        <p id="neverHaveIEver">Cliquez sur le bouton pour jouer.</p>
-        <button class="pulse" onclick="startChallenge('neverHaveIEver')">Jouer</button>
-        <p id="countdownNever"></p>
-    </div>
-
-    <div class="game-container slide-in">
-        <h2>N'oubliez pas les paroles</h2>
-        <p id="lyricsGame">Cliquez sur le bouton pour jouer.</p>
-        <button class="pulse" onclick="startChallenge('lyricsGame')">Jouer</button>
-        <p id="countdownLyrics"></p>
+    <div class="menu-container">
+        <h2>Choisissez un jeu</h2>
+        <ul class="menu">
+            <li><a href="multijoueur.html">Mode Multijoueur</a></li>
+            <li><a href="action-verite.html">Action ou Vérité</a></li>
+            <li><a href="je-never.html">Je n’ai jamais</a></li>
+            <li><a href="lyrics.html">N'oubliez pas les paroles</a></li>
+        </ul>
     </div>
 
     <script>
-        let customChallenges = [];
-
         function toggleMode() {
             document.body.classList.toggle("dark-mode");
             document.body.classList.toggle("light-mode");
             let modeButton = document.querySelector(".mode-toggle");
             modeButton.innerText = document.body.classList.contains("dark-mode") ? "Mode Clair" : "Mode Sombre";
-        }
-
-        function startChallenge(gameId) {
-            let countdownElement = document.getElementById("countdown" + gameId.charAt(0).toUpperCase() + gameId.slice(1));
-            let timeLeft = 10;
-            countdownElement.innerText = `Temps restant : ${timeLeft}s`;
-            
-            let countdown = setInterval(() => {
-                timeLeft--;
-                countdownElement.innerText = `Temps restant : ${timeLeft}s`;
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    countdownElement.innerText = "Temps écoulé !";
-                }
-            }, 1000);
-            
-            playChallenge(gameId);
-        }
-        
-        function playChallenge(gameId) {
-            let questions = {
-                "truthOrDare": [
-                    "Action : Danse sur une chanson au hasard !",
-                    "Vérité : As-tu déjà menti à un ami proche ?",
-                    "Action : Envoie un message embarrassant à quelqu'un !",
-                    "Vérité : Quel est ton plus grand secret ?"
-                ],
-                "neverHaveIEver": [
-                    "Je n’ai jamais menti sur mon âge.",
-                    "Je n’ai jamais dormi pendant un cours.",
-                    "Je n’ai jamais envoyé un message à la mauvaise personne.",
-                    "Je n’ai jamais chanté sous la douche."
-                ],
-                "lyricsGame": [
-                    "Complétez les paroles : \"Je l'aime à mourir...\"",
-                    "Complétez les paroles : \"Elle a les yeux revolver...\"",
-                    "Complétez les paroles : \"Comme d'habitude...\"",
-                    "Complétez les paroles : \"Aux Champs-Élysées...\""
-                ]
-            };
-            
-            let randomIndex = Math.floor(Math.random() * questions[gameId].length);
-            document.getElementById(gameId).innerText = questions[gameId][randomIndex];
-            playSound();
-        }
-
-        function playSound() {
-            document.getElementById("challengeSound").play();
-        }
-
-        function addCustomChallenge() {
-            let input = document.getElementById("customChallenge");
-            let challengeText = input.value.trim();
-            if (challengeText !== "") {
-                customChallenges.push(challengeText);
-                let challengeList = document.getElementById("customChallengesList");
-                let li = document.createElement("li");
-                li.innerText = challengeText;
-                challengeList.appendChild(li);
-                input.value = "";
-            }
         }
     </script>
 </body>
