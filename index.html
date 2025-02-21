@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body class="light-mode">
     <h1 class="fade-in">Bienvenue aux Jeux de Soirée !</h1>
@@ -19,7 +19,7 @@
     
     <audio id="challengeSound" src="challenge-sound.mp3"></audio>
     
-    <div class="game-container slide-in">
+    <div class="game-container multi slide-in">
         <h2>Mode Multijoueur</h2>
         <p>Ajoutez les joueurs et jouez à tour de rôle !</p>
         <input type="text" id="playerName" placeholder="Entrez le nom du joueur">
@@ -31,20 +31,20 @@
         <ul id="scoreBoard"></ul>
     </div>
     
-    <div class="game-container slide-in">
+    <div class="game-container truth slide-in">
         <h2>Action ou Vérité</h2>
         <p id="truthOrDare">Cliquez sur le bouton pour jouer.</p>
         <button class="pulse" onclick="playTruthOrDare()">Jouer</button>
         <button class="pulse" onclick="addPoint()">+1 Point</button>
     </div>
 
-    <div class="game-container slide-in">
+    <div class="game-container never slide-in">
         <h2>Je n’ai jamais</h2>
         <p id="neverHaveIEver">Cliquez sur le bouton pour jouer.</p>
         <button class="pulse" onclick="playNeverHaveIEver()">Jouer</button>
     </div>
 
-    <div class="game-container slide-in">
+    <div class="game-container lyrics slide-in">
         <h2>N'oubliez pas les paroles</h2>
         <p id="lyricsGame">Cliquez sur le bouton pour jouer.</p>
         <button class="pulse" onclick="playLyricsGame()">Jouer</button>
