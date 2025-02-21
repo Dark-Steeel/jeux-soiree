@@ -12,8 +12,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="light-mode">
     <h1 class="fade-in">Bienvenue aux Jeux de Soirée !</h1>
+    
+    <button class="mode-toggle" onclick="toggleMode()">Mode Sombre</button>
     
     <audio id="challengeSound" src="challenge-sound.mp3"></audio>
     
@@ -49,48 +51,11 @@
     </div>
 
     <script>
-        let players = [];
-        let currentPlayerIndex = 0;
-        let scores = {};
-        
-        function playSound() {
-            document.getElementById("challengeSound").play();
-        }
-        
-        function playTruthOrDare() {
-            const questions = [
-                "Action : Danse sur une chanson au hasard !",
-                "Vérité : As-tu déjà menti à un ami proche ?",
-                "Action : Envoie un message embarrassant à quelqu'un !",
-                "Vérité : Quel est ton plus grand secret ?"
-            ];
-            const randomIndex = Math.floor(Math.random() * questions.length);
-            document.getElementById("truthOrDare").innerText = questions[randomIndex];
-            playSound();
-        }
-
-        function playNeverHaveIEver() {
-            const questions = [
-                "Je n’ai jamais menti sur mon âge.",
-                "Je n’ai jamais dormi pendant un cours.",
-                "Je n’ai jamais envoyé un message à la mauvaise personne.",
-                "Je n’ai jamais chanté sous la douche."
-            ];
-            const randomIndex = Math.floor(Math.random() * questions.length);
-            document.getElementById("neverHaveIEver").innerText = questions[randomIndex];
-            playSound();
-        }
-
-        function playLyricsGame() {
-            const lyrics = [
-                "Complétez les paroles : \"Je l'aime à mourir...\"",
-                "Complétez les paroles : \"Elle a les yeux revolver...\"",
-                "Complétez les paroles : \"Comme d'habitude...\"",
-                "Complétez les paroles : \"Aux Champs-Élysées...\""
-            ];
-            const randomIndex = Math.floor(Math.random() * lyrics.length);
-            document.getElementById("lyricsGame").innerText = lyrics[randomIndex];
-            playSound();
+        function toggleMode() {
+            document.body.classList.toggle("dark-mode");
+            document.body.classList.toggle("light-mode");
+            let modeButton = document.querySelector(".mode-toggle");
+            modeButton.innerText = document.body.classList.contains("dark-mode") ? "Mode Clair" : "Mode Sombre";
         }
     </script>
 </body>
