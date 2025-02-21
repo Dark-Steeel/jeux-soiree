@@ -242,3 +242,19 @@ body.dark-mode {
     background: #ff9800;
     color: white;
 }
+/* Conteneur des défis personnalisés */
+#customChallengesList {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+#customChallengesList li {
+    background: #ffcccb;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #222;
+    font-weight: bold;
+}

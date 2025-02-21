@@ -41,7 +41,16 @@
         <p id="countdownLyrics"></p>
     </div>
 
+    <div class="game-container slide-in">
+        <h2>Ajoutez vos propres défis !</h2>
+        <input type="text" id="customChallenge" placeholder="Écrivez votre défi ici...">
+        <button class="pulse" onclick="addCustomChallenge()">Ajouter</button>
+        <ul id="customChallengesList"></ul>
+    </div>
+
     <script>
+        let customChallenges = [];
+
         function toggleMode() {
             document.body.classList.toggle("dark-mode");
             document.body.classList.toggle("light-mode");
@@ -51,7 +60,7 @@
 
         function startChallenge(gameId) {
             let countdownElement = document.getElementById("countdown" + gameId.charAt(0).toUpperCase() + gameId.slice(1));
-            let timeLeft = 10; // Compte à rebours de 10 secondes
+            let timeLeft = 10;
             countdownElement.innerText = `Temps restant : ${timeLeft}s`;
             
             let countdown = setInterval(() => {
@@ -95,6 +104,19 @@
 
         function playSound() {
             document.getElementById("challengeSound").play();
+        }
+
+        function addCustomChallenge() {
+            let input = document.getElementById("customChallenge");
+            let challengeText = input.value.trim();
+            if (challengeText !== "") {
+                customChallenges.push(challengeText);
+                let challengeList = document.getElementById("customChallengesList");
+                let li = document.createElement("li");
+                li.innerText = challengeText;
+                challengeList.appendChild(li);
+                input.value = "";
+            }
         }
     </script>
 </body>
