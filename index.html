@@ -1,6 +1,6 @@
 <!-- Mise à jour forcée -->
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -34,7 +34,19 @@
         <button class="pulse" onclick="playTruthOrDare()">Jouer</button>
         <button class="pulse" onclick="addPoint()">+1 Point</button>
     </div>
-    
+
+    <div class="game-container slide-in">
+        <h2>Je n’ai jamais</h2>
+        <p id="neverHaveIEver">Cliquez sur le bouton pour jouer.</p>
+        <button class="pulse" onclick="playNeverHaveIEver()">Jouer</button>
+    </div>
+
+    <div class="game-container slide-in">
+        <h2>N'oubliez pas les paroles</h2>
+        <p id="lyricsGame">Cliquez sur le bouton pour jouer.</p>
+        <button class="pulse" onclick="playLyricsGame()">Jouer</button>
+    </div>
+
     <script>
         let players = [];
         let currentPlayerIndex = 0;
@@ -44,49 +56,6 @@
             document.getElementById("challengeSound").play();
         }
         
-        function addPlayer() {
-            const playerName = document.getElementById("playerName").value.trim();
-            if (playerName !== "" && !players.includes(playerName)) {
-                players.push(playerName);
-                scores[playerName] = 0;
-                document.getElementById("playerName").value = "";
-                updatePlayersList();
-                updateScoreBoard();
-            }
-        }
-        
-        function updatePlayersList() {
-            document.getElementById("playersList").innerText = "Joueurs: " + players.join(", ");
-        }
-        
-        function updateScoreBoard() {
-            let scoreboard = document.getElementById("scoreBoard");
-            scoreboard.innerHTML = "";
-            let sortedPlayers = Object.keys(scores).sort((a, b) => scores[b] - scores[a]);
-            sortedPlayers.forEach(player => {
-                let li = document.createElement("li");
-                li.innerText = `${player}: ${scores[player]} points`;
-                scoreboard.appendChild(li);
-            });
-        }
-        
-        function nextPlayer() {
-            if (players.length > 0) {
-                currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-                document.getElementById("currentPlayer").innerText = "C'est au tour de " + players[currentPlayerIndex] + " de jouer!";
-            } else {
-                document.getElementById("currentPlayer").innerText = "Ajoutez des joueurs pour commencer.";
-            }
-        }
-        
-        function addPoint() {
-            if (players.length > 0) {
-                let currentPlayer = players[currentPlayerIndex];
-                scores[currentPlayer] += 1;
-                updateScoreBoard();
-            }
-        }
-        
         function playTruthOrDare() {
             const questions = [
                 "Action : Danse sur une chanson au hasard !",
@@ -94,9 +63,32 @@
                 "Action : Envoie un message embarrassant à quelqu'un !",
                 "Vérité : Quel est ton plus grand secret ?"
             ];
-            
             const randomIndex = Math.floor(Math.random() * questions.length);
             document.getElementById("truthOrDare").innerText = questions[randomIndex];
+            playSound();
+        }
+
+        function playNeverHaveIEver() {
+            const questions = [
+                "Je n’ai jamais menti sur mon âge.",
+                "Je n’ai jamais dormi pendant un cours.",
+                "Je n’ai jamais envoyé un message à la mauvaise personne.",
+                "Je n’ai jamais chanté sous la douche."
+            ];
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            document.getElementById("neverHaveIEver").innerText = questions[randomIndex];
+            playSound();
+        }
+
+        function playLyricsGame() {
+            const lyrics = [
+                "Complétez les paroles : \"Je l'aime à mourir...\"",
+                "Complétez les paroles : \"Elle a les yeux revolver...\"",
+                "Complétez les paroles : \"Comme d'habitude...\"",
+                "Complétez les paroles : \"Aux Champs-Élysées...\""
+            ];
+            const randomIndex = Math.floor(Math.random() * lyrics.length);
+            document.getElementById("lyricsGame").innerText = lyrics[randomIndex];
             playSound();
         }
     </script>
