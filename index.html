@@ -25,6 +25,10 @@
         <button class="pulse" onclick="startChallenge('truthOrDare')">Jouer</button>
         <button class="pulse" onclick="addPoint()">+1 Point</button>
         <p id="countdownTruth"></p>
+        <h3>Ajoutez votre propre défi</h3>
+        <input type="text" id="customChallenge" placeholder="Écrivez votre défi ici...">
+        <button class="pulse" onclick="addCustomChallenge()">Ajouter</button>
+        <ul id="customChallengesList"></ul>
     </div>
 
     <div class="game-container slide-in">
@@ -39,13 +43,6 @@
         <p id="lyricsGame">Cliquez sur le bouton pour jouer.</p>
         <button class="pulse" onclick="startChallenge('lyricsGame')">Jouer</button>
         <p id="countdownLyrics"></p>
-    </div>
-
-    <div class="game-container slide-in">
-        <h2>Ajoutez vos propres défis !</h2>
-        <input type="text" id="customChallenge" placeholder="Écrivez votre défi ici...">
-        <button class="pulse" onclick="addCustomChallenge()">Ajouter</button>
-        <ul id="customChallengesList"></ul>
     </div>
 
     <script>
