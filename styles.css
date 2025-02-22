@@ -308,3 +308,20 @@ body.dark-mode {
     background-color: #ff9800;
     transition: width 1s linear;
 }
+/* Style du tableau des scores */
+#scoreBoard {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+#scoreBoard li {
+    background: #ffcccb;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #222;
+    font-weight: bold;
+    text-align: center;
+}

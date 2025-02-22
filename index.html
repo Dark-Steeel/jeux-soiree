@@ -20,31 +20,21 @@
     <audio id="challengeSound" src="challenge-sound.mp3"></audio>
     
     <div class="game-container slide-in">
-        <h2>Action ou Vérité</h2>
-        <p id="truthOrDare">Cliquez sur le bouton pour jouer.</p>
-        <button class="pulse" onclick="startChallenge('truthOrDare')">Jouer</button>
-        <button class="pulse" onclick="addPoint()">+1 Point</button>
-        <p id="countdownTruth"></p>
-        <div class="progress-container"><div class="progress-bar" id="progressTruth"></div></div>
+        <h2>Mode Multijoueur</h2>
+        <p>Ajoutez les joueurs et jouez à tour de rôle !</p>
+        <input type="text" id="playerName" placeholder="Entrez le nom du joueur">
+        <button class="pulse" onclick="addPlayer()">Ajouter le joueur</button>
+        <p id="playersList">Joueurs: Aucun</p>
+        <button class="pulse" onclick="nextPlayer()">Joueur suivant</button>
+        <h3>Classement des joueurs</h3>
+        <ul id="scoreBoard"></ul>
     </div>
-
-    <div class="game-container slide-in">
-        <h2>Je n’ai jamais</h2>
-        <p id="neverHaveIEver">Cliquez sur le bouton pour jouer.</p>
-        <button class="pulse" onclick="startChallenge('neverHaveIEver')">Jouer</button>
-        <p id="countdownNever"></p>
-        <div class="progress-container"><div class="progress-bar" id="progressNever"></div></div>
-    </div>
-
-    <div class="game-container slide-in">
-        <h2>N'oubliez pas les paroles</h2>
-        <p id="lyricsGame">Cliquez sur le bouton pour jouer.</p>
-        <button class="pulse" onclick="startChallenge('lyricsGame')">Jouer</button>
-        <p id="countdownLyrics"></p>
-        <div class="progress-container"><div class="progress-bar" id="progressLyrics"></div></div>
-    </div>
-
+    
     <script>
+        let players = [];
+        let scores = {};
+        let currentPlayerIndex = 0;
+
         function toggleMode() {
             document.body.classList.toggle("dark-mode");
             document.body.classList.toggle("light-mode");
@@ -52,25 +42,47 @@
             modeButton.innerText = document.body.classList.contains("dark-mode") ? "Mode Clair" : "Mode Sombre";
         }
 
-        function startChallenge(gameId) {
-            let countdownElement = document.getElementById("countdown" + gameId.charAt(0).toUpperCase() + gameId.slice(1));
-            let progressBar = document.getElementById("progress" + gameId.charAt(0).toUpperCase() + gameId.slice(1));
-            let timeLeft = 10;
-            countdownElement.innerText = `Temps restant : ${timeLeft}s`;
-            progressBar.style.width = "100%";
-            
-            let countdown = setInterval(() => {
-                timeLeft--;
-                countdownElement.innerText = `Temps restant : ${timeLeft}s`;
-                progressBar.style.width = (timeLeft * 10) + "%";
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    countdownElement.innerText = "Temps écoulé !";
-                    progressBar.style.width = "0%";
-                }
-            }, 1000);
-            
-            playChallenge(gameId);
+        function addPlayer() {
+            const playerName = document.getElementById("playerName").value.trim();
+            if (playerName !== "" && !players.includes(playerName)) {
+                players.push(playerName);
+                scores[playerName] = 0;
+                document.getElementById("playerName").value = "";
+                updatePlayersList();
+                updateScoreBoard();
+            }
+        }
+
+        function updatePlayersList() {
+            document.getElementById("playersList").innerText = "Joueurs: " + players.join(", ");
+        }
+
+        function addPoint() {
+            if (players.length > 0) {
+                let currentPlayer = players[currentPlayerIndex];
+                scores[currentPlayer] += 1;
+                updateScoreBoard();
+            }
+        }
+
+        function updateScoreBoard() {
+            let scoreboard = document.getElementById("scoreBoard");
+            scoreboard.innerHTML = "";
+            let sortedPlayers = Object.keys(scores).sort((a, b) => scores[b] - scores[a]);
+            sortedPlayers.forEach(player => {
+                let li = document.createElement("li");
+                li.innerText = `${player}: ${scores[player]} points`;
+                scoreboard.appendChild(li);
+            });
+        }
+
+        function nextPlayer() {
+            if (players.length > 0) {
+                currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+                alert("C'est au tour de " + players[currentPlayerIndex] + " de jouer !");
+            } else {
+                alert("Ajoutez des joueurs pour commencer.");
+            }
         }
     </script>
 </body>
