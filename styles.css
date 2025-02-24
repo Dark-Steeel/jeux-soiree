@@ -409,3 +409,24 @@ button {
 button:hover {
     background: #e68900;
 }
+.dark-mode {
+    background-color: #222;
+    color: white;
+}
+
+.light-mode {
+    background-color: #f8c8c8;
+    color: black;
+}
+
+.mode-toggle {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: block; /* Assure-toi qu'il est bien visible */
+}

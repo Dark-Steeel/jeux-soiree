@@ -91,3 +91,14 @@ function playGame() {
         gameText.innerText = challenges[randomIndex];
     }
 }
+function toggleMode() {
+    document.body.classList.toggle("dark-mode");
+    document.body.classList.toggle("light-mode");
+    
+    let modeButton = document.querySelector(".mode-toggle");
+    if (document.body.classList.contains("dark-mode")) {
+        modeButton.innerText = "Mode Clair";
+    } else {
+        modeButton.innerText = "Mode Sombre";
+    }
+}
