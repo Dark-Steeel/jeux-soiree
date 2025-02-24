@@ -368,3 +368,6 @@ body.dark-mode {
     visibility: visible !important;
     opacity: 1 !important;
 }
+.game-container {
+    display: none !important;
+}
