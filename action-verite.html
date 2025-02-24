@@ -1,0 +1,34 @@
+function playTruthOrDare() {
+    const questions = [
+        "Action : Danse sur une chanson au hasard !",
+        "Vérité : As-tu déjà menti à un ami proche ?",
+        "Action : Envoie un message embarrassant à quelqu'un !",
+        "Vérité : Quel est ton plus grand secret ?"
+    ];
+
+    if (players.length > 0) {
+        const currentPlayer = players[currentPlayerIndex];
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        document.getElementById("truthOrDare").innerText = `${currentPlayer}, ton défi : ${questions[randomIndex]}`;
+        playSound();
+    } else {
+        alert("Ajoutez des joueurs pour commencer.");
+    }
+}
+function playAdultTruthOrDare() {
+    const questions = [
+        "Action : Envoie un texto osé à quelqu'un !",
+        "Vérité : As-tu déjà embrassé quelqu'un dans cette pièce ?",
+        "Action : Bois une gorgée de ton verre !",
+        "Vérité : Quel est ton plus grand fantasme ?"
+    ];
+
+    if (players.length > 0) {
+        const currentPlayer = players[currentPlayerIndex];
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        document.getElementById("adultTruthOrDare").innerText = `${currentPlayer}, ton défi : ${questions[randomIndex]}`;
+        playSound();
+    } else {
+        alert("Ajoutez des joueurs pour commencer.");
+    }
+}

@@ -1,0 +1,19 @@
+function playLyricsGame() {
+    const lyricsChallenges = [
+        "Complète les paroles : 'Ce rêve bleu, je n'y crois pas, c'est merveilleux...' 🎶",
+        "Complète les paroles : 'J'irai où tu iras, qu'importe la place ou l'endroit...' 🎶",
+        "Complète les paroles : 'Écris l'histoire, tout ce que tu voudras...' 🎶",
+        "Complète les paroles : 'Elle me dit, écris une chanson contente...' 🎶"
+    ];
+
+    if (players.length > 0) {
+        const currentPlayer = players[currentPlayerIndex];
+        const randomIndex = Math.floor(Math.random() * lyricsChallenges.length);
+        document.getElementById("lyricsGame").innerText = `${currentPlayer}, ton défi : ${lyricsChallenges[randomIndex]}`;
+        playSound();
+    } else {
+        alert("Ajoutez des joueurs pour commencer.");
+    }
+}
+<p id="lyricsGame">Cliquez sur le bouton pour jouer.</p>
+<button class="pulse" onclick="playLyricsGame()">Jouer</button>

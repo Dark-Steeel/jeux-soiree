@@ -1,0 +1,19 @@
+function playNeverHaveIEver() {
+    const statements = [
+        "Je n'ai jamais menti à mes parents.",
+        "Je n'ai jamais envoyé un message à la mauvaise personne.",
+        "Je n'ai jamais triché à un jeu.",
+        "Je n'ai jamais regretté un message envoyé."
+    ];
+
+    if (players.length > 0) {
+        const currentPlayer = players[currentPlayerIndex];
+        const randomIndex = Math.floor(Math.random() * statements.length);
+        document.getElementById("neverHaveIEver").innerText = `${currentPlayer}, ${statements[randomIndex]}`;
+        playSound();
+    } else {
+        alert("Ajoutez des joueurs pour commencer.");
+    }
+}
+<p id="neverHaveIEver">Cliquez sur le bouton pour jouer.</p>
+<button class="pulse" onclick="playNeverHaveIEver()">Jouer</button>
