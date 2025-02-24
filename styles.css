@@ -363,3 +363,8 @@ body.dark-mode {
     background: #ff9800;
     color: white;
 }
+.menu-container {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}

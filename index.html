@@ -16,6 +16,17 @@
     <h1 class="fade-in">Bienvenue aux Jeux de Soirée !</h1>
     
     <button class="mode-toggle" onclick="toggleMode()">Mode Sombre</button>
+  
+    <div class="menu-container">
+        <h2>Choisissez un jeu</h2>
+        <ul class="menu">
+            <li><a href="multijoueur.html">Mode Multijoueur</a></li>
+            <li><a href="action-verite.html">Action ou Vérité</a></li>
+            <li><a href="action-verite-adulte.html">Action ou Vérité (Adulte)</a></li>
+            <li><a href="je-never.html">Je n’ai jamais</a></li>
+            <li><a href="lyrics.html">N'oubliez pas les paroles</a></li>
+        </ul>
+    </div>
     
     <audio id="challengeSound" src="challenge-sound.mp3"></audio>
     
@@ -31,6 +42,14 @@
     </div>
     
     <script>
+       window.onload = function() {
+    let menu = document.querySelector(".menu-container");
+    if (menu) {
+        menu.style.display = "block";
+    }
+};
+
+
         let players = [];
         let scores = {};
         let currentPlayerIndex = 0;
@@ -40,6 +59,17 @@
             document.body.classList.toggle("light-mode");
             let modeButton = document.querySelector(".mode-toggle");
             modeButton.innerText = document.body.classList.contains("dark-mode") ? "Mode Clair" : "Mode Sombre";
+            <div class="menu-container">
+    <h2>Choisissez un jeu</h2>
+    <ul class="menu">
+        <li><a href="multijoueur.html">Mode Multijoueur</a></li>
+        <li><a href="action-verite.html">Action ou Vérité</a></li>
+        <li><a href="action-verite-adulte.html">Action ou Vérité (Adulte)</a></li>
+        <li><a href="je-never.html">Je n’ai jamais</a></li>
+        <li><a href="lyrics.html">N'oubliez pas les paroles</a></li>
+    </ul>
+</div>
+
         }
 
         function addPlayer() {
