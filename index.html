@@ -13,9 +13,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body class="light-mode">
-    <h1 class="fade-in">Bienvenue aux Jeux de Soirée !</h1>
-    
-    <button class="mode-toggle" onclick="toggleMode()">Mode Sombre</button>
+    <div class="game-container">
+        <h1>Action ou Vérité</h1>
+        <p>Cliquez sur le bouton pour jouer.</p>
+        <button class="pulse" onclick="playTruthOrDare()">Jouer</button>
+    </div>
+</body>
+
   
     <div class="menu-container">
         <h2>Choisissez un jeu</h2>
@@ -111,5 +115,6 @@
 };
 
     </script>
+<script src="script.js"></script>
 </body>
 </html>
